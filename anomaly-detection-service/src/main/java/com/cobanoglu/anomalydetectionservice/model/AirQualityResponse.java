@@ -1,0 +1,35 @@
+package com.cobanoglu.anomalydetectionservice.model;
+
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+import lombok.Data;
+
+import java.util.List;
+
+@Data
+public class AirQualityResponse {
+
+    @Valid
+    @NotNull
+    private List<AirData> list;
+
+    @Data
+    public static class AirData {
+        @Valid
+        @NotNull
+        private MainData main;
+
+        @Valid
+        @NotNull
+        private PollutantData components;
+
+        @NotNull
+        private Long dt;
+    }
+
+    @Data
+    public static class MainData {
+        @NotNull
+        private Integer aqi;
+    }
+}
