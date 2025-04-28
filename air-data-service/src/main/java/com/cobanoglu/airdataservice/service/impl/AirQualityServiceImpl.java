@@ -20,11 +20,24 @@ public class AirQualityServiceImpl implements AirQualityService {
     public AirQualityResponse getAirQuality(double lat, double lon) {
         try {
             String url = buildUrl(lat, lon);
-            return restTemplate.getForObject(url, AirQualityResponse.class);
+            AirQualityResponse response = restTemplate.getForObject(url, AirQualityResponse.class);
+
+            if (response == null || response.getList() == null) {
+                throw new AirQualityFetchException("Received empty air quality data from OpenWeatherMap");
+            }
+
+            response.getList().forEach(data -> {
+                data.setLat(lat);
+                data.setLon(lon);
+            });
+
+            return response;
+
         } catch (RestClientException e) {
             throw new AirQualityFetchException("Failed to fetch air quality data from OpenWeatherMap", e);
         }
     }
+
 
     private String buildUrl(double lat, double lon) {
         return String.format("%s?lat=%f&lon=%f&appid=%s",
