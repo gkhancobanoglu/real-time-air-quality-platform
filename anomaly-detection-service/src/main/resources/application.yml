@@ -1,0 +1,37 @@
+server:
+  port: 8082
+
+spring:
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: anomaly-detector
+      auto-offset-reset: latest
+      enable-auto-commit: false
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
+        spring.json.value.default.type: com.cobanoglu.anomalydetectionservice.model.AirQualityResponse
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/anomalydb
+    username: postgres
+    password: 1234
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+anomaly-detection:
+  threshold:
+    aqi: 4
+    co: 200
+    pm25: 35
+    o3: 100
+
+logging:
+  level:
+    org.springframework.kafka: DEBUG
+    com.cobanoglu.anomalydetectionservice: INFO
