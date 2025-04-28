@@ -25,6 +25,12 @@ public class AirQualityResponse {
 
         @NotNull
         private Long dt;
+
+        @NotNull
+        private Double lat;
+
+        @NotNull
+        private Double lon;
     }
 
     @Data
