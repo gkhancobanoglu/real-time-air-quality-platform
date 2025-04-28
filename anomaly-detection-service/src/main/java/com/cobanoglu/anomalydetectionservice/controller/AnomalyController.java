@@ -18,4 +18,5 @@ public class AnomalyController {
     public List<Anomaly> getAllAnomalies() {
         return anomalyDetectionService.getAllAnomalies();
     }
+
 }
