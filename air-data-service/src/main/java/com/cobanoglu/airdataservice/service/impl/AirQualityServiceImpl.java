@@ -1,5 +1,6 @@
 package com.cobanoglu.airdataservice.service.impl;
 
+import com.cobanoglu.airdataservice.exception.AirQualityFetchException;
 import com.cobanoglu.airdataservice.model.AirQualityResponse;
 import com.cobanoglu.airdataservice.service.AirQualityService;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +22,7 @@ public class AirQualityServiceImpl implements AirQualityService {
             String url = buildUrl(lat, lon);
             return restTemplate.getForObject(url, AirQualityResponse.class);
         } catch (RestClientException e) {
-            throw new RuntimeException("Failed to fetch air quality data from OpenWeatherMap", e);
+            throw new AirQualityFetchException("Failed to fetch air quality data from OpenWeatherMap", e);
         }
     }
 
