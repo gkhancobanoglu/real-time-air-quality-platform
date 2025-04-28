@@ -4,14 +4,16 @@ import com.cobanoglu.anomalydetectionservice.model.AirQualityResponse;
 import com.cobanoglu.anomalydetectionservice.model.Anomaly;
 import com.cobanoglu.anomalydetectionservice.repository.AnomalyRepository;
 import com.cobanoglu.anomalydetectionservice.service.AnomalyDetectionService;
+import com.cobanoglu.anomalydetectionservice.util.AnomalyUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
-
 
 @Service
 @RequiredArgsConstructor
@@ -23,16 +25,9 @@ public class AnomalyDetectionServiceImpl implements AnomalyDetectionService {
     @Value("${anomaly-detection.threshold.aqi}")
     private int aqiThreshold;
 
-    @Value("${anomaly-detection.threshold.pm25}")
-    private double pm25Threshold;
-
-    @Value("${anomaly-detection.threshold.o3}")
-    private double o3Threshold;
-
     @Override
     public void checkForAnomalies(AirQualityResponse response) {
         if (response == null || response.getList() == null) {
-            log.warn("Received null or empty air quality response.");
             return;
         }
 
@@ -44,29 +39,75 @@ public class AnomalyDetectionServiceImpl implements AnomalyDetectionService {
             double o3 = data.getComponents().getO3() != null ? data.getComponents().getO3() : -1;
 
             List<String> reasons = new ArrayList<>();
-            if (aqi >= aqiThreshold) reasons.add("AQI high (" + aqi + ")");
-            if (pm25 > pm25Threshold) reasons.add("PM2.5 high (" + pm25 + ")");
-            if (o3 > o3Threshold) reasons.add("O3 high (" + o3 + ")");
+
+            if (aqi >= aqiThreshold || AnomalyUtils.isThresholdExceeded(data)) {
+                reasons.add("Threshold exceeded");
+            }
+
+            Instant now = Instant.now();
+            Instant last24Hours = now.minus(24, ChronoUnit.HOURS);
+            List<Anomaly> recentAnomalies = anomalyRepository.findByTimestampBetween(last24Hours.toEpochMilli(), now.toEpochMilli());
+
+            if (!recentAnomalies.isEmpty()) {
+                double avgPm25 = recentAnomalies.stream().mapToDouble(Anomaly::getAqi).average().orElse(0);
+                double stdDevPm25 = calculateStandardDeviation(recentAnomalies, avgPm25);
+
+                double zScore = AnomalyUtils.calculateZScore(pm25, avgPm25, stdDevPm25);
+                if (Math.abs(zScore) > 2) {
+                    reasons.add("Z-Score anomaly");
+                }
+
+                if (AnomalyUtils.isSignificantIncrease(pm25, avgPm25)) {
+                    reasons.add("Significant increase");
+                }
+
+                List<Anomaly> nearbyAnomalies = findNearbyAnomalies(recentAnomalies, data.getLat(), data.getLon(), 25);
+                if (AnomalyUtils.hasRegionalAnomaly(nearbyAnomalies, pm25)) {
+                    reasons.add("Regional anomaly detected");
+                }
+            }
 
             if (!reasons.isEmpty()) {
                 String description = String.join("; ", reasons);
 
                 Anomaly anomaly = Anomaly.builder()
-                        .lat(0.0)
-                        .lon(0.0)
-                        .timestamp(data.getDt())
+                        .lat(data.getLat())
+                        .lon(data.getLon())
+                        .timestamp(data.getDt() != null ? data.getDt() : Instant.now().toEpochMilli())
                         .aqi(aqi)
                         .description(description)
                         .build();
 
                 anomalyRepository.save(anomaly);
-                log.warn("Anomaly detected and saved: {}", anomaly);
             }
         });
     }
+
+
+
 
     @Override
     public List<Anomaly> getAllAnomalies() {
         return anomalyRepository.findAll();
     }
+
+    public double calculateStandardDeviation(List<Anomaly> anomalies, double mean) {
+        double variance = anomalies.stream()
+                .mapToDouble(a -> Math.pow(a.getAqi() - mean, 2))
+                .average()
+                .orElse(0);
+        return Math.sqrt(variance);
+    }
+
+    public List<Anomaly> findNearbyAnomalies(List<Anomaly> anomalies, double lat, double lon, double radiusKm) {
+        List<Anomaly> nearby = new ArrayList<>();
+        for (Anomaly anomaly : anomalies) {
+            double distance = AnomalyUtils.calculateDistanceKm(lat, lon, anomaly.getLat(), anomaly.getLon());
+            if (distance <= radiusKm) {
+                nearby.add(anomaly);
+            }
+        }
+        return nearby;
+    }
+
 }
