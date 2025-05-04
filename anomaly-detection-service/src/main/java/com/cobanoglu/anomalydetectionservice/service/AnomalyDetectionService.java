@@ -8,4 +8,5 @@ import java.util.List;
 public interface AnomalyDetectionService {
     void checkForAnomalies(AirQualityResponse response);
     List<Anomaly> getAllAnomalies();
+    List<Anomaly> getAnomaliesBetween(long start, long end);
 }
