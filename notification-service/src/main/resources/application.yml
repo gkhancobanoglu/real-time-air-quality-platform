@@ -1,0 +1,15 @@
+server:
+  port: 8084
+
+kafka:
+  topic:
+    anomaly-data: anomaly-data
+
+spring:
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: notification-service
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      auto-offset-reset: earliest
