@@ -34,13 +34,14 @@ public class AnomalyDetectionServiceImpl implements AnomalyDetectionService {
         response.getList().forEach(data -> {
             if (data.getMain() == null || data.getComponents() == null) return;
 
-            int aqi = data.getMain().getAqi() != null ? data.getMain().getAqi() : -1;
-            double pm25 = data.getComponents().getPm2_5() != null ? data.getComponents().getPm2_5() : -1;
-            double o3 = data.getComponents().getO3() != null ? data.getComponents().getO3() : -1;
+            Integer aqi = data.getMain().getAqi();
+            Double pm25 = data.getComponents().getPm2_5();
+            Double pm10 = data.getComponents().getPm10();
+            Double o3 = data.getComponents().getO3();
 
             List<String> reasons = new ArrayList<>();
 
-            if (aqi >= aqiThreshold || AnomalyUtils.isThresholdExceeded(data)) {
+            if ((aqi != null && aqi >= aqiThreshold) || AnomalyUtils.isThresholdExceeded(data)) {
                 reasons.add("Threshold exceeded");
             }
 
@@ -48,7 +49,7 @@ public class AnomalyDetectionServiceImpl implements AnomalyDetectionService {
             Instant last24Hours = now.minus(24, ChronoUnit.HOURS);
             List<Anomaly> recentAnomalies = anomalyRepository.findByTimestampBetween(last24Hours.toEpochMilli(), now.toEpochMilli());
 
-            if (!recentAnomalies.isEmpty()) {
+            if (!recentAnomalies.isEmpty() && pm25 != null) {
                 double avgPm25 = recentAnomalies.stream().mapToDouble(Anomaly::getAqi).average().orElse(0);
                 double stdDevPm25 = calculateStandardDeviation(recentAnomalies, avgPm25);
 
@@ -74,7 +75,7 @@ public class AnomalyDetectionServiceImpl implements AnomalyDetectionService {
                         .lat(data.getLat())
                         .lon(data.getLon())
                         .timestamp(data.getDt() != null ? data.getDt() : Instant.now().toEpochMilli())
-                        .aqi(aqi)
+                        .aqi(aqi != null ? aqi : -1)
                         .description(description)
                         .build();
 
@@ -82,9 +83,6 @@ public class AnomalyDetectionServiceImpl implements AnomalyDetectionService {
             }
         });
     }
-
-
-
 
     @Override
     public List<Anomaly> getAllAnomalies() {
