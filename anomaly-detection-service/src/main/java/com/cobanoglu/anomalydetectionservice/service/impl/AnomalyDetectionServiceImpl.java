@@ -91,6 +91,11 @@ public class AnomalyDetectionServiceImpl implements AnomalyDetectionService {
         return anomalyRepository.findAll();
     }
 
+    @Override
+    public List<Anomaly> getAnomaliesBetween(long start, long end) {
+        return anomalyRepository.findByTimestampBetween(start, end);
+    }
+
     public double calculateStandardDeviation(List<Anomaly> anomalies, double mean) {
         double variance = anomalies.stream()
                 .mapToDouble(a -> Math.pow(a.getAqi() - mean, 2))
