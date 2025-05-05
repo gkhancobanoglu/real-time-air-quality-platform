@@ -43,22 +43,29 @@ public class AirQualityController {
         data.setDt(System.currentTimeMillis());
 
         PollutantData components = new PollutantData();
-        switch (request.getParameter()) {
-            case "PM2.5":
+        String param = request.getParameter().toLowerCase();
+
+        switch (param) {
+            case "pm25":
                 components.setPm2_5(request.getValue());
                 break;
-            case "PM10":
+            case "pm10":
                 components.setPm10(request.getValue());
                 break;
-            case "NO2":
+            case "no2":
                 components.setNo2(request.getValue());
                 break;
-            case "SO2":
+            case "so2":
                 components.setSo2(request.getValue());
                 break;
-            case "O3":
+            case "o3":
                 components.setO3(request.getValue());
                 break;
+            case "co":
+                components.setCo(request.getValue());
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported pollutant: " + param);
         }
 
         data.setComponents(components);
@@ -75,6 +82,7 @@ public class AirQualityController {
         kafkaProducerService.sendAirQualityData(response);
         return ResponseEntity.ok().build();
     }
+
 
 
 
