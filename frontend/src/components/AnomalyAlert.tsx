@@ -17,17 +17,15 @@ interface Anomaly {
 const AnomalyAlert: React.FC = () => {
   const [alerts, setAlerts] = useState<Anomaly[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 5;
+  const [pageSize, setPageSize] = useState(5);
 
   useEffect(() => {
-    // 🟢 İlk veriler (geçmiş) yüklensin
     fetch("http://localhost:8082/api/anomalies")
       .then((res) => res.json())
       .then((data: Anomaly[]) => {
-        setAlerts(data.reverse()); // En yeniler en üste
+        setAlerts(data.reverse());
       });
 
-    // 🔴 SSE bağlantısı (canlı anomaly verisi)
     const eventSource = new EventSource(
       "http://localhost:8084/api/notifications/stream"
     );
@@ -50,7 +48,6 @@ const AnomalyAlert: React.FC = () => {
     return () => eventSource.close();
   }, []);
 
-  // 🔄 Sayfalama verileri
   const start = (currentPage - 1) * pageSize;
   const paginated = alerts.slice(start, start + pageSize);
 
@@ -90,7 +87,12 @@ const AnomalyAlert: React.FC = () => {
         current={currentPage}
         pageSize={pageSize}
         total={alerts.length}
-        onChange={(page) => setCurrentPage(page)}
+        onChange={(page, size) => {
+          setCurrentPage(page);
+          setPageSize(size);
+        }}
+        showSizeChanger
+        pageSizeOptions={["5", "10", "20"]}
         style={{ marginTop: 16, textAlign: "center" }}
       />
     </Card>

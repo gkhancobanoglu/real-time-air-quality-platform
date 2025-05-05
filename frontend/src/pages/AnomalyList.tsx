@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Table, Typography, Tag } from "antd";
+import { Table, Typography, Tag, Button } from "antd";
 import { useNavigate } from "react-router-dom";
 
 const { Title } = Typography;
@@ -58,7 +58,14 @@ const AnomalyList: React.FC = () => {
 
   return (
     <div style={{ padding: "24px" }}>
-      <Title level={2}>Detected Anomalies</Title>
+      <Button type="default" onClick={() => navigate("/")}>
+        ← Back to Home
+      </Button>
+
+      <Title level={2} style={{ marginTop: 16 }}>
+        Detected Anomalies
+      </Title>
+
       <Table
         rowKey="id"
         columns={columns}

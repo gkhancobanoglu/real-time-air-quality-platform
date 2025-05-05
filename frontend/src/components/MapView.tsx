@@ -19,6 +19,7 @@ interface AnomalyPoint {
   lon: number;
   aqi: number;
   description: string;
+  timestamp: string;
 }
 
 const HeatLayer: React.FC<{ points: [number, number, number][] }> = ({

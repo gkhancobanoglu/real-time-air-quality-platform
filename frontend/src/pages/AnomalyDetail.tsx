@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { Card, Descriptions, Spin, Alert } from "antd";
+import { useParams, useNavigate } from "react-router-dom";
+import { Card, Descriptions, Spin, Alert, Button } from "antd";
 import dayjs from "dayjs";
 
 interface Anomaly {
@@ -14,6 +14,7 @@ interface Anomaly {
 
 const AnomalyDetail: React.FC = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [anomaly, setAnomaly] = useState<Anomaly | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -45,7 +46,15 @@ const AnomalyDetail: React.FC = () => {
     );
 
   return (
-    <Card title={`Anomaly Detail - ID: ${anomaly.id}`} style={{ margin: 24 }}>
+    <Card
+      title={`Anomaly Detail - ID: ${anomaly.id}`}
+      style={{ margin: 24 }}
+      extra={
+        <Button type="default" onClick={() => navigate("/anomalies")}>
+          ← Back to List
+        </Button>
+      }
+    >
       <Descriptions bordered column={1}>
         <Descriptions.Item label="Timestamp">
           {dayjs(anomaly.timestamp).format("YYYY-MM-DD HH:mm:ss")}

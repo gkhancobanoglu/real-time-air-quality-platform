@@ -1,8 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Card, InputNumber, Button, Row, Col, Typography, Alert } from "antd";
-
-const { Title, Text } = Typography;
+import {
+  Card,
+  InputNumber,
+  Button,
+  Row,
+  Col,
+  Alert,
+  Descriptions,
+  Tag,
+} from "antd";
 
 interface PollutionData {
   pm25?: number;
@@ -99,15 +106,18 @@ const RegionAnalysis: React.FC = () => {
       )}
 
       {data && (
-        <div style={{ marginTop: 24 }}>
-          <Title level={5}>Average Pollution Values</Title>
+        <Descriptions
+          title="Average Pollution Values"
+          bordered
+          column={1}
+          style={{ marginTop: 24 }}
+        >
           {Object.entries(data).map(([key, value]) => (
-            <Text key={key}>
-              • {key.toUpperCase()}: {value?.toFixed(2)}
-              <br />
-            </Text>
+            <Descriptions.Item label={key.toUpperCase()} key={key}>
+              <Tag color="blue">{value?.toFixed(2)}</Tag>
+            </Descriptions.Item>
           ))}
-        </div>
+        </Descriptions>
       )}
     </Card>
   );
