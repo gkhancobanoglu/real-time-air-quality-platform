@@ -35,7 +35,7 @@ class AnomalyDetectionServiceImplTest {
     void testCheckForAnomalies_ThresholdExceeded() {
         AirQualityResponse.AirData airData = new AirQualityResponse.AirData();
         AirQualityResponse.MainData mainData = new AirQualityResponse.MainData();
-        mainData.setAqi(5);
+        mainData.setAqi(5.0);
         airData.setMain(mainData);
 
         PollutantData pollutantData = new PollutantData();
