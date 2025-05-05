@@ -1,0 +1,703 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="383dbb11-2480-4f06-922f-c0610c8bba03" name="Changes" comment="Implement timestamp-based anomaly filtering">
+      <change afterPath="$PROJECT_DIR$/backend/notification-service/src/main/java/com/cobanoglu/notificationservice/config/WebSocketConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/notification-service/src/main/java/com/cobanoglu/notificationservice/listener/AnomalyKafkaListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/notification-service/src/main/java/com/cobanoglu/notificationservice/config/WebSocketConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/notification-service/src/main/java/com/cobanoglu/notificationservice/listener/AnomalyKafkaListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/notification-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/notification-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/notification-service/src/main/resources/application.yml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Exception" />
+        <option value="Dockerfile" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;gkhancobanoglu&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/gkhancobanoglu/real-time-air-quality-platform.git&quot;,
+    &quot;accountId&quot;: &quot;c9219e3c-bf69-43af-b644-1c3542048f9a&quot;
+  }
+}</component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2vSMfiWsJZ4RCOf6EyMnbbWa8HK" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JUnit.AirQualityServiceImplTest (1).executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.AirQualityServiceImplTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.AnomalyDetectionServiceImplTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.KafkaProducerServiceImplTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.com.cobanoglu.airdataservice.service.impl in air-data-service.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.service in air-data-service.executor&quot;: &quot;Coverage&quot;,
+    &quot;Maven.anomaly-detection-service [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.anomaly-detection-service [install].executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;Spring Boot.AirDataServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.AnomalyDetectionServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.DataStorageServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.NotificationServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.RealTimeAirQualityPlatformApplication.executor&quot;: &quot;Debug&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Gokhan/Desktop/TASKLER/kartaca/real-time-air-quality-platform&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.34485406&quot;,
+    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.annotationProcessors&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.cobanoglu.anomalydetectionservice.model" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="KtorApplicationConfigurationType" />
+        <option value="MicronautRunConfigurationType" />
+        <option value="QuarkusRunConfigurationType" />
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="JUnit.AirQualityServiceImplTest (1)">
+    <configuration name="AirQualityServiceImplTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="data-storage-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.cobanoglu.datastorageservice.service.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.cobanoglu.datastorageservice.service.impl" />
+      <option name="MAIN_CLASS_NAME" value="com.cobanoglu.datastorageservice.service.impl.AirQualityServiceImplTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AirQualityServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="air-data-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.cobanoglu.airdataservice.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.cobanoglu.airdataservice.service" />
+      <option name="MAIN_CLASS_NAME" value="com.cobanoglu.airdataservice.service.AirQualityServiceImplTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AnomalyDetectionServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="anomaly-detection-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.cobanoglu.anomalydetectionservice.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.cobanoglu.anomalydetectionservice.service" />
+      <option name="MAIN_CLASS_NAME" value="com.cobanoglu.anomalydetectionservice.service.AnomalyDetectionServiceImplTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="com.cobanoglu.airdataservice.service.impl in air-data-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="air-data-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.cobanoglu.airdataservice.service.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.cobanoglu.airdataservice.service.impl" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="service in air-data-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="air-data-service" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/air-data-service/src/test/java/com/cobanoglu/airdataservice/service" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AirDataServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="air-data-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.cobanoglu.airdataservice.AirDataServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AnomalyDetectionServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="anomaly-detection-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.cobanoglu.anomalydetectionservice.AnomalyDetectionServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DataStorageServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="data-storage-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.cobanoglu.datastorageservice.DataStorageServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NotificationServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="notification-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.cobanoglu.notificationservice.NotificationServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.AirQualityServiceImplTest (1)" />
+        <item itemvalue="JUnit.AnomalyDetectionServiceImplTest" />
+        <item itemvalue="JUnit.service in air-data-service" />
+        <item itemvalue="JUnit.com.cobanoglu.airdataservice.service.impl in air-data-service" />
+        <item itemvalue="JUnit.AirQualityServiceImplTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-125ca727e0f0-intellij.indexing.shared.core-IU-243.23654.189" />
+        <option value="bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-IU-243.23654.189" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="383dbb11-2480-4f06-922f-c0610c8bba03" name="Changes" comment="" />
+      <created>1744134127597</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1744134127597</updated>
+      <workItem from="1744134128811" duration="5241000" />
+      <workItem from="1744140106364" duration="1476000" />
+      <workItem from="1744141706872" duration="1732000" />
+      <workItem from="1745147880461" duration="2889000" />
+      <workItem from="1745150793577" duration="3009000" />
+      <workItem from="1745762566273" duration="1044000" />
+      <workItem from="1745765506496" duration="1451000" />
+      <workItem from="1745767547250" duration="2341000" />
+      <workItem from="1745848605927" duration="2687000" />
+      <workItem from="1745859980392" duration="4029000" />
+      <workItem from="1745865640678" duration="5043000" />
+      <workItem from="1745873214339" duration="3762000" />
+      <workItem from="1746359752789" duration="2281000" />
+    </task>
+    <task id="LOCAL-00018" summary="Implement AnomalyDetectionService">
+      <option name="closed" value="true" />
+      <created>1745850990554</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1745850990554</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Add utility methods for anomaly detection">
+      <option name="closed" value="true" />
+      <created>1745851001715</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1745851001715</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Add AnomalyController for anomaly data">
+      <option name="closed" value="true" />
+      <created>1745851011424</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1745851011424</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Configure air-data-service in application.yml">
+      <option name="closed" value="true" />
+      <created>1745851030009</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1745851030010</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Configure anomaly-detection-service in application.yml">
+      <option name="closed" value="true" />
+      <created>1745851042569</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1745851042569</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Add docker-compose configuration for services">
+      <option name="closed" value="true" />
+      <created>1745851061407</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1745851061407</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Update pom.xml with dependencies">
+      <option name="closed" value="true" />
+      <created>1745851077527</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1745851077527</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Create Dockerfile for air-data-service">
+      <option name="closed" value="true" />
+      <created>1745851087754</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1745851087754</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Create Dockerfile for anomaly-detection-service">
+      <option name="closed" value="true" />
+      <created>1745851097029</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1745851097029</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Create Dockerfile for data-storage-service">
+      <option name="closed" value="true" />
+      <created>1745851107298</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1745851107298</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Create Dockerfile for notification-service">
+      <option name="closed" value="true" />
+      <created>1745851114906</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1745851114906</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Implement Kafka listener for air quality data">
+      <option name="closed" value="true" />
+      <created>1745851219440</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1745851219440</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Configure Kafka consumer settings for anomaly detection">
+      <option name="closed" value="true" />
+      <created>1745851227983</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1745851227983</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Configure data-storage-service settings in application.yml">
+      <option name="closed" value="true" />
+      <created>1745851241016</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1745851241016</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Configure Kafka producer settings for air-data-service">
+      <option name="closed" value="true" />
+      <created>1745851254685</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1745851254685</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Update pom.xml">
+      <option name="closed" value="true" />
+      <created>1745851271153</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1745851271153</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Use AirQualityFetchException for better error handling">
+      <option name="closed" value="true" />
+      <created>1745863565176</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1745863565176</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Add unit tests for AirQualityServiceImpl with success and failure scenarios">
+      <option name="closed" value="true" />
+      <created>1745864156170</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1745864156170</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Add unit tests for KafkaProducerServiceImpl to test Kafka send success and failure">
+      <option name="closed" value="true" />
+      <created>1745864172557</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1745864172557</updated>
+    </task>
+    <task id="LOCAL-00037" summary="fix: improve exception handling in air-data-service">
+      <option name="closed" value="true" />
+      <created>1745869219904</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1745869219904</updated>
+    </task>
+    <task id="LOCAL-00038" summary="feat: add latitude and longitude fields to AirQualityResponse">
+      <option name="closed" value="true" />
+      <created>1745869231329</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1745869231329</updated>
+    </task>
+    <task id="LOCAL-00039" summary="feat: synchronize AirQualityResponse model in anomaly-detection-service">
+      <option name="closed" value="true" />
+      <created>1745869245688</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1745869245688</updated>
+    </task>
+    <task id="LOCAL-00040" summary="feat: set lat and lon in air quality response after fetching from API">
+      <option name="closed" value="true" />
+      <created>1745869257527</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1745869257527</updated>
+    </task>
+    <task id="LOCAL-00041" summary="test: add unit tests for AirQualityServiceImpl with %100 coverage">
+      <option name="closed" value="true" />
+      <created>1745869287615</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1745869287615</updated>
+    </task>
+    <task id="LOCAL-00042" summary="refactor: minor improvements in AnomalyController endpoin">
+      <option name="closed" value="true" />
+      <created>1745869298489</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1745869298489</updated>
+    </task>
+    <task id="LOCAL-00043" summary="feat: enhance anomaly detection with z-score, %50 increase, and regional analysis">
+      <option name="closed" value="true" />
+      <created>1745869307031</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1745869307031</updated>
+    </task>
+    <task id="LOCAL-00044" summary="test: add unit tests for AnomalyDetectionServiceImpl with &gt;80% coverage">
+      <option name="closed" value="true" />
+      <created>1745869316259</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1745869316259</updated>
+    </task>
+    <task id="LOCAL-00045" summary="feat: add findByTimestampBetween query method in AnomalyRepository">
+      <option name="closed" value="true" />
+      <created>1745869326284</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1745869326284</updated>
+    </task>
+    <task id="LOCAL-00046" summary="feat: add utility methods for anomaly calculations (z-score, distance, increase)">
+      <option name="closed" value="true" />
+      <created>1745869334691</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1745869334691</updated>
+    </task>
+    <task id="LOCAL-00047" summary="test: create TestAnomalyController for manual anomaly injection during testing">
+      <option name="closed" value="true" />
+      <created>1745869342688</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1745869342688</updated>
+    </task>
+    <task id="LOCAL-00048" summary="Add AirQualityResponse model">
+      <option name="closed" value="true" />
+      <created>1745874683136</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1745874683136</updated>
+    </task>
+    <task id="LOCAL-00049" summary="Add PollutantData model">
+      <option name="closed" value="true" />
+      <created>1745874694781</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1745874694781</updated>
+    </task>
+    <task id="LOCAL-00050" summary="Create AirQualityEntity for database storage">
+      <option name="closed" value="true" />
+      <created>1745874704450</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1745874704451</updated>
+    </task>
+    <task id="LOCAL-00051" summary="Add AirQualityRepository interface">
+      <option name="closed" value="true" />
+      <created>1745874713642</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1745874713642</updated>
+    </task>
+    <task id="LOCAL-00052" summary="Define AirQualityService interface">
+      <option name="closed" value="true" />
+      <created>1745874723096</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1745874723096</updated>
+    </task>
+    <task id="LOCAL-00053" summary="Implement AirQualityService logic">
+      <option name="closed" value="true" />
+      <created>1745874731057</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1745874731057</updated>
+    </task>
+    <task id="LOCAL-00054" summary="Configure Kafka consumer settings">
+      <option name="closed" value="true" />
+      <created>1745874740522</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1745874740522</updated>
+    </task>
+    <task id="LOCAL-00055" summary="Implement Kafka listener to save air data">
+      <option name="closed" value="true" />
+      <created>1745874749337</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1745874749337</updated>
+    </task>
+    <task id="LOCAL-00056" summary="Create AirQualityController for data retrieval">
+      <option name="closed" value="true" />
+      <created>1745874757103</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1745874757103</updated>
+    </task>
+    <task id="LOCAL-00057" summary="Add application configuration for DB and Kafka">
+      <option name="closed" value="true" />
+      <created>1745874764738</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1745874764738</updated>
+    </task>
+    <task id="LOCAL-00058" summary="Update dependencies for Kafka and PostgreSQL">
+      <option name="closed" value="true" />
+      <created>1745874775964</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1745874775964</updated>
+    </task>
+    <task id="LOCAL-00059" summary="Add unit tests for AirQualityServiceImpl">
+      <option name="closed" value="true" />
+      <created>1745874919846</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1745874919846</updated>
+    </task>
+    <task id="LOCAL-00060" summary="Add endpoint for regional pollution data retrieval">
+      <option name="closed" value="true" />
+      <created>1746361449520</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1746361449520</updated>
+    </task>
+    <task id="LOCAL-00061" summary="Add query method to fetch air quality data within lat/lon range">
+      <option name="closed" value="true" />
+      <created>1746361464012</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1746361464012</updated>
+    </task>
+    <task id="LOCAL-00062" summary="Define method to calculate average pollutant values in a region">
+      <option name="closed" value="true" />
+      <created>1746361477812</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1746361477812</updated>
+    </task>
+    <task id="LOCAL-00063" summary="Implement logic for computing average pollution metrics">
+      <option name="closed" value="true" />
+      <created>1746361486813</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1746361486813</updated>
+    </task>
+    <task id="LOCAL-00064" summary="Add time-based filtering support to anomalies endpoint">
+      <option name="closed" value="true" />
+      <created>1746361504391</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1746361504391</updated>
+    </task>
+    <task id="LOCAL-00065" summary="Add method signature for fetching anomalies between timestamps">
+      <option name="closed" value="true" />
+      <created>1746361513185</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1746361513185</updated>
+    </task>
+    <task id="LOCAL-00066" summary="Implement timestamp-based anomaly filtering">
+      <option name="closed" value="true" />
+      <created>1746361520692</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1746361520692</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="refactor: minor improvements in AnomalyController endpoin" />
+    <MESSAGE value="feat: enhance anomaly detection with z-score, %50 increase, and regional analysis" />
+    <MESSAGE value="test: add unit tests for AnomalyDetectionServiceImpl with &gt;80% coverage" />
+    <MESSAGE value="feat: add findByTimestampBetween query method in AnomalyRepository" />
+    <MESSAGE value="feat: add utility methods for anomaly calculations (z-score, distance, increase)" />
+    <MESSAGE value="test: create TestAnomalyController for manual anomaly injection during testing" />
+    <MESSAGE value="Add AirQualityResponse model" />
+    <MESSAGE value="Add PollutantData model" />
+    <MESSAGE value="Create AirQualityEntity for database storage" />
+    <MESSAGE value="Add AirQualityRepository interface" />
+    <MESSAGE value="Define AirQualityService interface" />
+    <MESSAGE value="Implement AirQualityService logic" />
+    <MESSAGE value="Configure Kafka consumer settings" />
+    <MESSAGE value="Implement Kafka listener to save air data" />
+    <MESSAGE value="Create AirQualityController for data retrieval" />
+    <MESSAGE value="Add application configuration for DB and Kafka" />
+    <MESSAGE value="Update dependencies for Kafka and PostgreSQL" />
+    <MESSAGE value="Add unit tests for AirQualityServiceImpl" />
+    <MESSAGE value="Add endpoint for regional pollution data retrieval" />
+    <MESSAGE value="Add query method to fetch air quality data within lat/lon range" />
+    <MESSAGE value="Define method to calculate average pollutant values in a region" />
+    <MESSAGE value="Implement logic for computing average pollution metrics" />
+    <MESSAGE value="Add time-based filtering support to anomalies endpoint" />
+    <MESSAGE value="Add method signature for fetching anomalies between timestamps" />
+    <MESSAGE value="Implement timestamp-based anomaly filtering" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implement timestamp-based anomaly filtering" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/real_time_air_quality_platform$AirQualityServiceImplTest__1_.ic" NAME="AirQualityServiceImplTest (1) Coverage Results" MODIFIED="1745874882414" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>com.cobanoglu.datastorageservice.service.impl.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/real_time_air_quality_platform$KafkaProducerServiceImplTest.ic" NAME="KafkaProducerServiceImplTest Coverage Results" MODIFIED="1745864009782" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>com.cobanoglu.airdataservice.service.impl.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/real_time_air_quality_platform$com_cobanoglu_airdataservice_service_impl_in_air_data_service.ic" NAME="com.cobanoglu.airdataservice.service.impl in air-data-service Coverage Results" MODIFIED="1745865968790" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>com.cobanoglu.airdataservice.service.impl.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/real_time_air_quality_platform$AirQualityServiceImplTest.ic" NAME="AirQualityServiceImplTest Coverage Results" MODIFIED="1745865958777" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>com.cobanoglu.airdataservice.service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/real_time_air_quality_platform$service_in_air_data_service.ic" NAME="service in air-data-service Coverage Results" MODIFIED="1745865988207" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/real_time_air_quality_platform$AnomalyDetectionServiceImplTest.ic" NAME="AnomalyDetectionServiceImplTest Coverage Results" MODIFIED="1745869101497" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>com.cobanoglu.anomalydetectionservice.service.*</FILTER>
+    </SUITE>
+  </component>
+</project>
