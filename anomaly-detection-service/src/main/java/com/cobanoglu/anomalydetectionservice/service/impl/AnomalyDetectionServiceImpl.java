@@ -14,6 +14,7 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -34,7 +35,7 @@ public class AnomalyDetectionServiceImpl implements AnomalyDetectionService {
         response.getList().forEach(data -> {
             if (data.getMain() == null || data.getComponents() == null) return;
 
-            Integer aqi = data.getMain().getAqi();
+            Double aqi = data.getMain().getAqi();
             Double pm25 = data.getComponents().getPm2_5();
             Double pm10 = data.getComponents().getPm10();
             Double o3 = data.getComponents().getO3();
@@ -92,6 +93,16 @@ public class AnomalyDetectionServiceImpl implements AnomalyDetectionService {
     @Override
     public List<Anomaly> getAnomaliesBetween(long start, long end) {
         return anomalyRepository.findByTimestampBetween(start, end);
+    }
+
+    @Override
+    public Optional<Anomaly> getLatestAnomaly() {
+        return anomalyRepository.findTopByOrderByTimestampDesc();
+    }
+
+    @Override
+    public Anomaly getAnomalyById(Long id) {
+        return anomalyRepository.findById(id).orElse(null);
     }
 
     public double calculateStandardDeviation(List<Anomaly> anomalies, double mean) {
