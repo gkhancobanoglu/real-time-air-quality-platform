@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: air-data-service
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.add.type.headers: false
+
+server:
+  port: 8081
+
+openweathermap:
+  api:
+    url: https://api.openweathermap.org/data/2.5/air_pollution
+    key: 3f4c92cb936d9347fc6deb6493384335
+
+kafka:
+  topic:
+    air-data: air-data
