@@ -64,7 +64,7 @@ public class AirQualityController {
         data.setComponents(components);
 
         AirQualityResponse.MainData main = new AirQualityResponse.MainData();
-        main.setAqi(1);
+        main.setAqi(1.0);
         data.setMain(main);
 
         AirQualityResponse response = new AirQualityResponse();

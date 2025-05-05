@@ -36,6 +36,6 @@ public class AirQualityResponse {
     @Data
     public static class MainData {
         @NotNull
-        private Integer aqi;
+        private Double aqi;
     }
 }

@@ -19,7 +19,7 @@ public class Anomaly {
     private double lat;
     private double lon;
 
-    private int aqi;
+    private double aqi;
 
     private long timestamp;
 

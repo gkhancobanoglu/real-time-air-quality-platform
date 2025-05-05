@@ -21,7 +21,7 @@ public class AirQualityEntity {
     private Double lat;
     private Double lon;
 
-    private Integer aqi;
+    private Double aqi;
 
     private Double co;
     private Double no;
