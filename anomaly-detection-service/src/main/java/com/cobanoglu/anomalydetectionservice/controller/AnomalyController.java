@@ -3,6 +3,7 @@ package com.cobanoglu.anomalydetectionservice.controller;
 import com.cobanoglu.anomalydetectionservice.model.Anomaly;
 import com.cobanoglu.anomalydetectionservice.service.AnomalyDetectionService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,5 +25,22 @@ public class AnomalyController {
             return ResponseEntity.ok(anomalyDetectionService.getAnomaliesBetween(start, end));
         }
         return ResponseEntity.ok(anomalyDetectionService.getAllAnomalies());
+    }
+
+    @GetMapping("/latest")
+    public ResponseEntity<Anomaly> getLatestAnomaly() {
+        return anomalyDetectionService.getLatestAnomaly()
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.noContent().build());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Anomaly> getAnomalyById(@PathVariable Long id) {
+        Anomaly anomaly = anomalyDetectionService.getAnomalyById(id);
+        if (anomaly != null) {
+            return ResponseEntity.ok(anomaly);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
 }
