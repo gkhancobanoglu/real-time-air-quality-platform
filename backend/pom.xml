@@ -16,6 +16,7 @@
         <module>anomaly-detection-service</module>
         <module>notification-service</module>
         <module>data-storage-service</module>
+        <module>script-runner-service</module>
     </modules>
 
     <properties>
