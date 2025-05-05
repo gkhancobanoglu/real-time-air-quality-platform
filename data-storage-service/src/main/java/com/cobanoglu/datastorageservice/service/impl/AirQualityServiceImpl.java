@@ -6,10 +6,7 @@ import com.cobanoglu.datastorageservice.service.AirQualityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -31,14 +28,54 @@ public class AirQualityServiceImpl implements AirQualityService {
     public Map<String, Double> getAveragePollutionInRegion(double minLat, double maxLat, double minLon, double maxLon) {
         List<AirQualityEntity> data = airQualityRepository.findByLatLonRange(minLat, maxLat, minLon, maxLon);
 
-        double avgAqi = data.stream().mapToDouble(AirQualityEntity::getAqi).average().orElse(0);
-        double avgPm25 = data.stream().mapToDouble(AirQualityEntity::getPm25).average().orElse(0);
-        double avgPm10 = data.stream().mapToDouble(AirQualityEntity::getPm10).average().orElse(0);
-        double avgCo = data.stream().mapToDouble(AirQualityEntity::getCo).average().orElse(0);
-        double avgNo2 = data.stream().mapToDouble(AirQualityEntity::getNo2).average().orElse(0);
-        double avgSo2 = data.stream().mapToDouble(AirQualityEntity::getSo2).average().orElse(0);
-        double avgO3 = data.stream().mapToDouble(AirQualityEntity::getO3).average().orElse(0);
-        double avgNh3 = data.stream().mapToDouble(AirQualityEntity::getNh3).average().orElse(0);
+        double avgAqi = data.stream()
+                .map(AirQualityEntity::getAqi)
+                .filter(Objects::nonNull)
+                .mapToDouble(Double::doubleValue)
+                .average()
+                .orElse(0);
+
+        double avgPm25 = data.stream()
+                .map(AirQualityEntity::getPm25)
+                .filter(Objects::nonNull)
+                .mapToDouble(Double::doubleValue)
+                .average().orElse(0);
+
+        double avgPm10 = data.stream()
+                .map(AirQualityEntity::getPm10)
+                .filter(Objects::nonNull)
+                .mapToDouble(Double::doubleValue)
+                .average().orElse(0);
+
+        double avgCo = data.stream()
+                .map(AirQualityEntity::getCo)
+                .filter(Objects::nonNull)
+                .mapToDouble(Double::doubleValue)
+                .average().orElse(0);
+
+        double avgNo2 = data.stream()
+                .map(AirQualityEntity::getNo2)
+                .filter(Objects::nonNull)
+                .mapToDouble(Double::doubleValue)
+                .average().orElse(0);
+
+        double avgSo2 = data.stream()
+                .map(AirQualityEntity::getSo2)
+                .filter(Objects::nonNull)
+                .mapToDouble(Double::doubleValue)
+                .average().orElse(0);
+
+        double avgO3 = data.stream()
+                .map(AirQualityEntity::getO3)
+                .filter(Objects::nonNull)
+                .mapToDouble(Double::doubleValue)
+                .average().orElse(0);
+
+        double avgNh3 = data.stream()
+                .map(AirQualityEntity::getNh3)
+                .filter(Objects::nonNull)
+                .mapToDouble(Double::doubleValue)
+                .average().orElse(0);
 
         Map<String, Double> result = new HashMap<>();
         result.put("avgAqi", avgAqi);
@@ -52,4 +89,5 @@ public class AirQualityServiceImpl implements AirQualityService {
 
         return result;
     }
+
 }
