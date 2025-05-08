@@ -1,7 +1,7 @@
 package com.cobanoglu.datastorageservice.controller;
 
 import com.cobanoglu.datastorageservice.model.AirQualityEntity;
-import com.cobanoglu.datastorageservice.service.AirQualityService;
+import com.cobanoglu.datastorageservice.service.AirQualityStorageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,9 +12,9 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/air-quality")
 @RequiredArgsConstructor
-public class AirQualityController {
+public class AirQualityStorageController {
 
-    private final AirQualityService airQualityService;
+    private final AirQualityStorageService airQualityService;
 
     @GetMapping
     public List<AirQualityEntity> getAllAirQualityData() {
