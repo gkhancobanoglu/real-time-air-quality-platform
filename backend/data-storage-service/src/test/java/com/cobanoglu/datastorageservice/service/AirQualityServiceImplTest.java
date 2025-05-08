@@ -1,7 +1,8 @@
-package com.cobanoglu.datastorageservice.service.impl;
+package com.cobanoglu.datastorageservice.service;
 
 import com.cobanoglu.datastorageservice.model.AirQualityEntity;
 import com.cobanoglu.datastorageservice.repository.AirQualityRepository;
+import com.cobanoglu.datastorageservice.service.impl.AirQualityStorageServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -20,7 +21,7 @@ class AirQualityServiceImplTest {
     private AirQualityRepository repository;
 
     @InjectMocks
-    private AirQualityServiceImpl service;
+    private AirQualityStorageServiceImpl service;
 
     @BeforeEach
     void setUp() {
