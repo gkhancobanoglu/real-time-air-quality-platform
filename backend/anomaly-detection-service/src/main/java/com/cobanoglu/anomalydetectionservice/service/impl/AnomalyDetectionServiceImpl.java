@@ -1,7 +1,11 @@
 package com.cobanoglu.anomalydetectionservice.service.impl;
 
+import com.cobanoglu.anomalydetectionservice.exception.AnomalyNotFoundException;
+import com.cobanoglu.anomalydetectionservice.exception.InvalidAirDataException;
+import com.cobanoglu.anomalydetectionservice.exception.AnomalySaveException;
 import com.cobanoglu.anomalydetectionservice.model.AirQualityResponse;
 import com.cobanoglu.anomalydetectionservice.model.Anomaly;
+import com.cobanoglu.anomalydetectionservice.model.PollutantData;
 import com.cobanoglu.anomalydetectionservice.repository.AnomalyRepository;
 import com.cobanoglu.anomalydetectionservice.service.AnomalyDetectionService;
 import com.cobanoglu.anomalydetectionservice.util.AnomalyUtils;
@@ -29,58 +33,73 @@ public class AnomalyDetectionServiceImpl implements AnomalyDetectionService {
     @Override
     public void checkForAnomalies(AirQualityResponse response) {
         if (response == null || response.getList() == null) {
-            return;
+            throw new InvalidAirDataException("Geçersiz hava kalitesi verisi alındı (null veya boş liste)");
         }
 
         response.getList().forEach(data -> {
             if (data.getMain() == null || data.getComponents() == null) return;
 
             Double aqi = data.getMain().getAqi();
-            Double pm25 = data.getComponents().getPm2_5();
-            Double pm10 = data.getComponents().getPm10();
-            Double o3 = data.getComponents().getO3();
+            PollutantData comp = data.getComponents();
+            Double pm25 = comp.getPm2_5();
 
             List<String> reasons = new ArrayList<>();
 
-            if ((aqi != null && aqi >= aqiThreshold) || AnomalyUtils.isThresholdExceeded(data)) {
-                reasons.add("Threshold exceeded");
+            if (aqi != null && aqi >= aqiThreshold) {
+                reasons.add(String.format("AQI %.1f değeri, eşik olan %d'yi aştı.", aqi, aqiThreshold));
+            }
+
+            if (AnomalyUtils.isThresholdExceeded(data)) {
+                reasons.add("Kirletici seviyeleri belirlenen eşiklerin üzerinde.");
             }
 
             Instant now = Instant.now();
             Instant last24Hours = now.minus(24, ChronoUnit.HOURS);
-            List<Anomaly> recentAnomalies = anomalyRepository.findByTimestampBetween(last24Hours.toEpochMilli(), now.toEpochMilli());
+            List<Anomaly> recentAnomalies = anomalyRepository.findByTimestampBetween(
+                    last24Hours.toEpochMilli(), now.toEpochMilli());
 
-            if (!recentAnomalies.isEmpty() && pm25 != null) {
-                double avgPm25 = recentAnomalies.stream().mapToDouble(Anomaly::getAqi).average().orElse(0);
-                double stdDevPm25 = calculateStandardDeviation(recentAnomalies, avgPm25);
+            double avgPm25 = recentAnomalies.stream().mapToDouble(Anomaly::getAqi).average().orElse(0);
+            double stdDevPm25 = calculateStandardDeviation(recentAnomalies, avgPm25);
 
+            if (pm25 != null && !recentAnomalies.isEmpty()) {
                 double zScore = AnomalyUtils.calculateZScore(pm25, avgPm25, stdDevPm25);
                 if (Math.abs(zScore) > 2) {
-                    reasons.add("Z-Score anomaly");
-                }
-
-                if (AnomalyUtils.isSignificantIncrease(pm25, avgPm25)) {
-                    reasons.add("Significant increase");
-                }
-
-                List<Anomaly> nearbyAnomalies = findNearbyAnomalies(recentAnomalies, data.getLat(), data.getLon(), 25);
-                if (AnomalyUtils.hasRegionalAnomaly(nearbyAnomalies, pm25)) {
-                    reasons.add("Regional anomaly detected");
+                    reasons.add("PM2.5 değeri, geçmişe göre istatistiksel olarak anormal.");
                 }
             }
 
+            if (pm25 != null && AnomalyUtils.isSignificantIncrease(pm25, avgPm25)) {
+                reasons.add("PM2.5 değerinde ani ve belirgin artış gözlendi.");
+            }
+
+            List<Anomaly> nearbyAnomalies = findNearbyAnomalies(recentAnomalies, data.getLat(), data.getLon(), 25);
+            if (AnomalyUtils.hasRegionalAnomaly(nearbyAnomalies, pm25)) {
+                reasons.add("Aynı bölgede beklenmedik farklılıklar gözlemlendi.");
+            }
+
             if (!reasons.isEmpty()) {
-                String description = String.join("; ", reasons);
+                String description = String.join(" ", reasons);
 
                 Anomaly anomaly = Anomaly.builder()
                         .lat(data.getLat())
                         .lon(data.getLon())
                         .timestamp(data.getDt() != null ? data.getDt() : Instant.now().toEpochMilli())
-                        .aqi(aqi != null ? aqi : -1)
+                        .aqi(aqi != null ? Math.round(aqi * 10.0) / 10.0 : -1)
                         .description(description)
+                        .pm25(comp.getPm2_5())
+                        .pm10(comp.getPm10())
+                        .o3(comp.getO3())
+                        .no2(comp.getNo2())
+                        .so2(comp.getSo2())
+                        .co(comp.getCo())
+                        .nh3(comp.getNh3())
                         .build();
 
-                anomalyRepository.save(anomaly);
+                try {
+                    anomalyRepository.save(anomaly);
+                } catch (Exception e) {
+                    throw new AnomalySaveException("Anomali kaydı veritabanına kaydedilemedi", e);
+                }
             }
         });
     }
@@ -102,7 +121,8 @@ public class AnomalyDetectionServiceImpl implements AnomalyDetectionService {
 
     @Override
     public Anomaly getAnomalyById(Long id) {
-        return anomalyRepository.findById(id).orElse(null);
+        return anomalyRepository.findById(id)
+                .orElseThrow(() -> new AnomalyNotFoundException("Anomali ID " + id + " ile bulunamadı"));
     }
 
     public double calculateStandardDeviation(List<Anomaly> anomalies, double mean) {
@@ -123,5 +143,4 @@ public class AnomalyDetectionServiceImpl implements AnomalyDetectionService {
         }
         return nearby;
     }
-
 }
