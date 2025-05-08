@@ -45,9 +45,13 @@ const AnomalyList: React.FC = () => {
       title: "AQI",
       dataIndex: "aqi",
       key: "aqi",
-      render: (aqi: number) => (
-        <Tag color={aqi >= 3 ? "red" : "green"}>{aqi}</Tag>
-      ),
+      render: (aqi: number) => {
+        let color = "green";
+        if (aqi >= 150) color = "red";
+        else if (aqi >= 100) color = "orange";
+        else if (aqi >= 50) color = "yellow";
+        return <Tag color={color}>{aqi.toFixed(0)}</Tag>;
+      },
     },
     {
       title: "Description",
