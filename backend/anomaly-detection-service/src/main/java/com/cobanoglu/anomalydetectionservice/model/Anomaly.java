@@ -25,4 +25,12 @@ public class Anomaly {
 
     @Column(length = 1000)
     private String description;
+
+    private Double pm25;
+    private Double pm10;
+    private Double o3;
+    private Double no2;
+    private Double so2;
+    private Double co;
+    private Double nh3;
 }
