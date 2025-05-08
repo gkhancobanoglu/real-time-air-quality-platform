@@ -5,6 +5,7 @@ import AnomalyList from "./pages/AnomalyList";
 import AnomalyDetail from "./pages/AnomalyDetail";
 import ManualInputPage from "./pages/ManualInputPage";
 import AutoTestPage from "./pages/AutoTestPage";
+import HeatMapPage from "./pages/HeatMapPage";
 import { Layout, Menu } from "antd";
 import "antd/dist/reset.css";
 
@@ -21,6 +22,7 @@ const App: React.FC = () => {
           items={[
             { key: "home", label: <Link to="/">Home</Link> },
             { key: "list", label: <Link to="/anomalies">Anomalies</Link> },
+            { key: "heatmap", label: <Link to="/heatmap">Heatmap</Link> },
           ]}
         />
       </Header>
@@ -31,6 +33,7 @@ const App: React.FC = () => {
           <Route path="/anomalies/:id" element={<AnomalyDetail />} />
           <Route path="/manual-input" element={<ManualInputPage />} />
           <Route path="/auto-test" element={<AutoTestPage />} />
+          <Route path="/heatmap" element={<HeatMapPage />} />
         </Routes>
       </Content>
     </Layout>
