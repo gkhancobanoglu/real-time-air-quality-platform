@@ -26,8 +26,8 @@ spring:
 
 anomaly-detection:
   threshold:
-    aqi: 4
-    co: 200
+    aqi: 150
+    co: 9
     pm25: 35
     o3: 100
 
