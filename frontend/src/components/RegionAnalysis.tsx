@@ -28,8 +28,27 @@ const RegionAnalysis: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async () => {
+    if (
+      minLat === null ||
+      maxLat === null ||
+      minLon === null ||
+      maxLon === null
+    ) {
+      setError("Please enter all coordinates.");
+      return;
+    }
+
+    if (minLat >= maxLat || minLon >= maxLon) {
+      setError(
+        "Invalid coordinates. Make sure min values are less than max values."
+      );
+      return;
+    }
+
     try {
       setError(null);
+      setData(null);
+
       const response = await axios.get(
         "http://localhost:8083/api/air-quality/pollution/region",
         {
@@ -41,15 +60,18 @@ const RegionAnalysis: React.FC = () => {
           },
         }
       );
+
+      if (response.status !== 200) {
+        setError("Failed to fetch region data. Please check the coordinates.");
+        return;
+      }
+
       setData(response.data);
     } catch (err) {
       console.error("Error fetching regional data", err);
-      setError(
-        "Failed to fetch region data. Please check the coordinates and try again."
-      );
+      setError("Failed to fetch region data. Please try again later.");
     }
   };
-
   return (
     <Card title="📊 Regional Pollution Analysis" style={{ margin: 24 }}>
       <Row gutter={[16, 16]}>
