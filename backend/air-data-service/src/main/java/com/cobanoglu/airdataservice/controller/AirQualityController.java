@@ -11,9 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 @RestController
 @RequestMapping("/api/air")
@@ -43,47 +41,26 @@ public class AirQualityController {
         data.setDt(System.currentTimeMillis());
 
         PollutantData components = new PollutantData();
-        String param = request.getParameter().toLowerCase();
-
-        switch (param) {
-            case "pm25":
-                components.setPm2_5(request.getValue());
-                break;
-            case "pm10":
-                components.setPm10(request.getValue());
-                break;
-            case "no2":
-                components.setNo2(request.getValue());
-                break;
-            case "so2":
-                components.setSo2(request.getValue());
-                break;
-            case "o3":
-                components.setO3(request.getValue());
-                break;
-            case "co":
-                components.setCo(request.getValue());
-                break;
-            default:
-                throw new IllegalArgumentException("Unsupported pollutant: " + param);
-        }
+        components.setCo(request.getCo());
+        components.setNo(request.getNo());
+        components.setNo2(request.getNo2());
+        components.setO3(request.getO3());
+        components.setSo2(request.getSo2());
+        components.setPm2_5(request.getPm2_5());
+        components.setPm10(request.getPm10());
+        components.setNh3(request.getNh3());
 
         data.setComponents(components);
 
         AirQualityResponse.MainData main = new AirQualityResponse.MainData();
-        main.setAqi(1.0);
+        main.setAqi(airQualityService.calculateAQI(components));
         data.setMain(main);
 
         AirQualityResponse response = new AirQualityResponse();
-        List<AirQualityResponse.AirData> list = new ArrayList<>();
-        list.add(data);
-        response.setList(list);
+        response.setList(Arrays.asList(data));
 
         kafkaProducerService.sendAirQualityData(response);
         return ResponseEntity.ok().build();
     }
-
-
-
 
 }
