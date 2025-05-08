@@ -2,7 +2,7 @@ package com.cobanoglu.datastorageservice.service.impl;
 
 import com.cobanoglu.datastorageservice.model.AirQualityEntity;
 import com.cobanoglu.datastorageservice.repository.AirQualityRepository;
-import com.cobanoglu.datastorageservice.service.AirQualityService;
+import com.cobanoglu.datastorageservice.service.AirQualityStorageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +10,7 @@ import java.util.*;
 
 @Service
 @RequiredArgsConstructor
-public class AirQualityServiceImpl implements AirQualityService {
+public class AirQualityStorageServiceImpl implements AirQualityStorageService {
 
     private final AirQualityRepository airQualityRepository;
 
