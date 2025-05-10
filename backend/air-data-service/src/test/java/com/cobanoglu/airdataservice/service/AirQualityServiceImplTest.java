@@ -14,6 +14,7 @@ import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -46,7 +47,7 @@ class AirQualityServiceImplTest {
         airData.setLat(10.0);
         airData.setLon(20.0);
 
-        List<AirQualityResponse.AirData> airDataList = new java.util.ArrayList<>();
+        List<AirQualityResponse.AirData> airDataList = new ArrayList<>();
         airDataList.add(airData);
 
         AirQualityResponse response = new AirQualityResponse();
@@ -98,5 +99,28 @@ class AirQualityServiceImplTest {
         String actualUrl = (String) ReflectionTestUtils.invokeMethod(airQualityService, "buildUrl", lat, lon);
 
         assertEquals(expectedUrl, actualUrl);
+    }
+
+    @Test
+    void testCalculateAQIWithData() {
+        PollutantData data = new PollutantData();
+        data.setPm2_5(40.0); // Medium AQI
+        data.setPm10(60.0);
+        data.setO3(90.0);
+        data.setNo2(200.0);
+        data.setSo2(100.0);
+        data.setCo(20.0);
+        data.setNh3(500.0);
+
+        double result = airQualityService.calculateAQI(data);
+        assertTrue(result > 0);
+    }
+
+    @Test
+    void testCalculateAQIWithAllNulls() {
+        PollutantData data = new PollutantData(); // all fields null
+
+        double result = airQualityService.calculateAQI(data);
+        assertEquals(1.0, result);
     }
 }

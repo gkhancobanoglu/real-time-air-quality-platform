@@ -23,9 +23,9 @@ public class KafkaProducerServiceImpl implements KafkaProducerService {
     public void sendAirQualityData(AirQualityResponse response) {
         try {
             kafkaTemplate.send(topic, response);
-            log.info("✅ Sent air quality data to Kafka topic '{}'", topic);
+            log.info(" Sent air quality data to Kafka topic '{}'", topic);
         } catch (Exception e) {
-            log.error("❌ Failed to send data to Kafka topic '{}'", topic, e);
+            log.error(" Failed to send data to Kafka topic '{}'", topic, e);
             throw new KafkaPublishException("Failed to send air quality data to Kafka", e);
         }
     }

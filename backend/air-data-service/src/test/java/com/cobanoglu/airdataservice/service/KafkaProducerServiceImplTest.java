@@ -1,7 +1,8 @@
-package com.cobanoglu.airdataservice.service.impl;
+package com.cobanoglu.airdataservice.service;
 
 import com.cobanoglu.airdataservice.exception.KafkaPublishException;
 import com.cobanoglu.airdataservice.model.AirQualityResponse;
+import com.cobanoglu.airdataservice.service.impl.KafkaProducerServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
