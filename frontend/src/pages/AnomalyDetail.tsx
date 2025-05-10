@@ -59,7 +59,7 @@ const AnomalyDetail: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch(`http://localhost:8082/api/anomalies/${id}`)
+    fetch(`${process.env.REACT_APP_ANOMALY_API}/api/anomalies/${id}`)
       .then((res) => {
         if (!res.ok) throw new Error("Data not found");
         return res.json();

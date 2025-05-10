@@ -20,14 +20,14 @@ const AnomalyAlert: React.FC = () => {
   const [pageSize, setPageSize] = useState(5);
 
   useEffect(() => {
-    fetch("http://localhost:8082/api/anomalies")
+    fetch(`${process.env.REACT_APP_ANOMALY_API}/api/anomalies`)
       .then((res) => res.json())
       .then((data: Anomaly[]) => {
         setAlerts(data.reverse());
       });
 
     const eventSource = new EventSource(
-      "http://localhost:8084/api/notifications/stream"
+      `${process.env.REACT_APP_NOTIFICATION_API}/api/notifications/stream`
     );
 
     eventSource.onmessage = (event) => {
@@ -45,7 +45,9 @@ const AnomalyAlert: React.FC = () => {
       }
     };
 
-    return () => eventSource.close();
+    return () => {
+      eventSource.close();
+    };
   }, []);
 
   const start = (currentPage - 1) * pageSize;

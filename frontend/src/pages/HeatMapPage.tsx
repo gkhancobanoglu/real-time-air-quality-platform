@@ -47,7 +47,7 @@ const HeatMapPage: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch("http://localhost:8082/api/anomalies")
+    fetch(`${process.env.REACT_APP_ANOMALY_API}/api/anomalies`)
       .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch anomalies");
         return res.json();

@@ -20,7 +20,7 @@ const ChartView: React.FC = () => {
   const [data, setData] = useState<ChartData[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:8083/api/air-quality")
+    fetch(`${process.env.REACT_APP_STORAGE_API}/api/air-quality`)
       .then((res) => res.json())
       .then((rawData) => {
         const formatted = rawData.map((item: any) => ({

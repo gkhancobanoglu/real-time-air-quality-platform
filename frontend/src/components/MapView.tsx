@@ -66,7 +66,7 @@ const MapView: React.FC = () => {
 
   useEffect(() => {
     // 1️⃣ Geçmiş anomaly verilerini getir
-    fetch("http://localhost:8082/api/anomalies")
+    fetch(`${process.env.REACT_APP_ANOMALY_API}/api/anomalies`)
       .then((res) => res.json())
       .then((data: AnomalyPoint[]) => {
         setLivePoints(
@@ -77,7 +77,7 @@ const MapView: React.FC = () => {
 
     // 2️⃣ Yeni verileri dinle (SSE)
     const eventSource = new EventSource(
-      "http://localhost:8084/api/notifications/stream"
+      `${process.env.REACT_APP_NOTIFICATION_API}/api/notifications/stream`
     );
 
     eventSource.onmessage = (event) => {

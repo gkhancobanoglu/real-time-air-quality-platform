@@ -25,7 +25,7 @@ const ManualInputPage: React.FC = () => {
   const handleSubmit = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:8085/api/scripts/manual",
+        `${process.env.REACT_APP_SCRIPT_RUNNER_API}/api/scripts/manual`,
         null,
         {
           params: {

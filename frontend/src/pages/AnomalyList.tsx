@@ -19,7 +19,7 @@ const AnomalyList: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:8082/api/anomalies")
+    fetch(`${process.env.REACT_APP_ANOMALY_API}/api/anomalies`)
       .then((res) => res.json())
       .then((data) => {
         setData(data);

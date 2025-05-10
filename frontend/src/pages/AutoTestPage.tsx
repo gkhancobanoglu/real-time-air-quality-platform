@@ -17,7 +17,7 @@ const AutoTestPage: React.FC = () => {
       setLoading(true);
       setError(null);
       const response = await axios.post(
-        "http://localhost:8085/api/scripts/autotest",
+        `${process.env.REACT_APP_SCRIPT_RUNNER_API}/api/scripts/autotest`,
         null,
         {
           params: {

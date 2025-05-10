@@ -50,7 +50,7 @@ const RegionAnalysis: React.FC = () => {
       setData(null);
 
       const response = await axios.get(
-        "http://localhost:8083/api/air-quality/pollution/region",
+        `${process.env.REACT_APP_STORAGE_API}/api/air-quality/pollution/region`,
         {
           params: {
             minLat,
