@@ -31,6 +31,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
+      - postgres_data:/var/lib/postgresql/data
       - ./docker/init.sql:/docker-entrypoint-initdb.d/init.sql
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
@@ -106,3 +107,6 @@ services:
       - data-storage-service
       - notification-service
       - script-runner-service
+
+volumes:
+  postgres_data:
