@@ -28,7 +28,7 @@ public class ScriptController {
             @RequestParam(defaultValue = "30") int anomalyChance) {
 
         String command = String.format("C:\\Users\\Gokhan\\Desktop\\TASKLER\\kartaca\\real-time-air-quality-platform\\backend\\scripts\\auto-test.bat %d %d %d", duration, rate, anomalyChance);
-        runScriptAsync("cmd.exe", "/c", command); // asenkron çağır
+        runScriptAsync("cmd.exe", "/c", command);
         return ResponseEntity.ok("Auto-test started.");
     }
 
