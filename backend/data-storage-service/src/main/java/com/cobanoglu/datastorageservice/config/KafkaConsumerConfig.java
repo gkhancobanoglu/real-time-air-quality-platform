@@ -1,41 +1,41 @@
 package com.cobanoglu.datastorageservice.config;
 
-import com.cobanoglu.datastorageservice.model.AirQualityEntity;
+import com.cobanoglu.datastorageservice.model.AirQualityResponse;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
+import org.springframework.kafka.support.serializer.ErrorHandlingDeserializer;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@EnableKafka
 @Configuration
 public class KafkaConsumerConfig {
 
     @Bean
-    public ConsumerFactory<String, AirQualityEntity> airQualityConsumerFactory() {
-        JsonDeserializer<AirQualityEntity> deserializer = new JsonDeserializer<>(AirQualityEntity.class);
-        deserializer.addTrustedPackages("*");
+    public ConsumerFactory<String, AirQualityResponse> consumerFactory() {
+        Map<String, Object> config = new HashMap<>();
+        config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "kafka:9092");
+        config.put(ConsumerConfig.GROUP_ID_CONFIG, "data-storage-group");
+        config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+        config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ErrorHandlingDeserializer.class);
+        config.put(ErrorHandlingDeserializer.VALUE_DESERIALIZER_CLASS, JsonDeserializer.class);
+        config.put(JsonDeserializer.VALUE_DEFAULT_TYPE, "com.cobanoglu.datastorageservice.model.AirQualityResponse");
+        config.put(JsonDeserializer.TRUSTED_PACKAGES, "*");
 
-        Map<String, Object> props = new HashMap<>();
-        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
-        props.put(ConsumerConfig.GROUP_ID_CONFIG, "data-storage-group");
-        props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, deserializer);
-
-        return new DefaultKafkaConsumerFactory<>(props, new StringDeserializer(), deserializer);
+        return new DefaultKafkaConsumerFactory<>(config);
     }
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, AirQualityEntity> airQualityKafkaListenerContainerFactory() {
-        ConcurrentKafkaListenerContainerFactory<String, AirQualityEntity> factory = new ConcurrentKafkaListenerContainerFactory<>();
-        factory.setConsumerFactory(airQualityConsumerFactory());
+    public ConcurrentKafkaListenerContainerFactory<String, AirQualityResponse> kafkaListenerContainerFactory() {
+        ConcurrentKafkaListenerContainerFactory<String, AirQualityResponse> factory =
+                new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(consumerFactory());
         return factory;
     }
 }
