@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   zookeeper:
@@ -16,7 +16,7 @@ services:
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
       KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
     ports:
@@ -27,6 +27,57 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 1234
-      POSTGRES_DB: anomalydb
     ports:
       - "5432:5432"
+    volumes:
+      - ./docker/init.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: always
+
+  air-data-service:
+    build:
+      context: ./backend/air-data-service
+    ports:
+      - "8081:8081"
+    depends_on:
+      - kafka
+      - postgres
+    restart: on-failure
+
+  anomaly-detection-service:
+    build:
+      context: ./backend/anomaly-detection-service
+    ports:
+      - "8082:8082"
+    depends_on:
+      - kafka
+      - postgres
+    restart: on-failure
+
+  data-storage-service:
+    build:
+      context: ./backend/data-storage-service
+    ports:
+      - "8083:8083"
+    depends_on:
+      - kafka
+      - postgres
+    restart: on-failure
+
+  notification-service:
+    build:
+      context: ./backend/notification-service
+    ports:
+      - "8084:8084"
+    depends_on:
+      - kafka
+    restart: on-failure
+
+  script-runner-service:
+    build:
+      context: ./backend/script-runner-service
+    ports:
+      - "8085:8085"
+    depends_on:
+      - kafka
+      - postgres
+    restart: on-failure
