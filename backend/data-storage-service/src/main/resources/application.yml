@@ -3,7 +3,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/airqualitydb
+    url: jdbc:postgresql://postgres:5432/airqualitydb
     username: postgres
     password: 1234
     driver-class-name: org.postgresql.Driver
@@ -15,9 +15,10 @@ spring:
     properties:
       hibernate:
         format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
 
 kafka:
-  bootstrap-servers: localhost:9092
+  bootstrap-servers: kafka:9092
   topic:
     air-data: air-data
   group-id: data-storage-group

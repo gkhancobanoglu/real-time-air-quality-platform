@@ -3,7 +3,7 @@ server:
 
 spring:
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: kafka:9092
     consumer:
       group-id: anomaly-detector
       auto-offset-reset: latest
@@ -15,7 +15,7 @@ spring:
         spring.json.value.default.type: com.cobanoglu.anomalydetectionservice.model.AirQualityResponse
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/anomalydb
+    url: jdbc:postgresql://postgres:5432/anomalydb
     username: postgres
     password: 1234
 
