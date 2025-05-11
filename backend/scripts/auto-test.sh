@@ -43,7 +43,7 @@ while [ $SECONDS -lt $END ]; do
     PM10=$(get_value)
     NH3=$(get_value)
 
-    ./manual-input.sh "$LAT" "$LON" "$CO" "$NO" "$NO2" "$O3" "$SO2" "$PM25" "$PM10" "$NH3" &
+    /scripts/manual-input.sh "$LAT" "$LON" "$CO" "$NO" "$NO2" "$O3" "$SO2" "$PM25" "$PM10" "$NH3" &
   done
 
   wait

@@ -41,13 +41,16 @@ public class ScriptController {
 
     @PostMapping("/autotest")
     public ResponseEntity<String> runAutoTest(
-            @RequestParam(defaultValue = "30") int duration,
-            @RequestParam(defaultValue = "2") int rate,
-            @RequestParam(defaultValue = "30") int anomalyChance) {
+            @RequestParam(name = "duration", defaultValue = "30") int duration,
+            @RequestParam(name = "rate", defaultValue = "2") int rate,
+            @RequestParam(name = "anomalyChance", defaultValue = "30") int anomalyChance) {
 
-        String command = String.format("C:\\Users\\Gokhan\\Desktop\\TASKLER\\kartaca\\real-time-air-quality-platform\\backend\\scripts\\auto-test.bat %d %d %d", duration, rate, anomalyChance);
-        runScriptAsync("cmd.exe", "/c", command);
-        return ResponseEntity.ok("Auto-test started.");
+        return runScript(
+                "/bin/bash", "/scripts/auto-test.sh",
+                String.valueOf(duration),
+                String.valueOf(rate),
+                String.valueOf(anomalyChance)
+        );
     }
 
     @Async

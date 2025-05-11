@@ -16,7 +16,7 @@ const AutoTestPage: React.FC = () => {
     try {
       setLoading(true);
       setError(null);
-      const response = await axios.post(
+      await axios.post(
         `${process.env.REACT_APP_SCRIPT_RUNNER_API}/api/scripts/autotest`,
         null,
         {
@@ -27,9 +27,9 @@ const AutoTestPage: React.FC = () => {
           },
         }
       );
-      setResult("Auto-test script started.");
+      setResult("✅ Auto-test script started successfully.");
     } catch (err) {
-      setError("Auto test script failed.");
+      setError("❌ Auto-test script failed to start.");
       setResult(null);
     } finally {
       setLoading(false);
@@ -40,15 +40,16 @@ const AutoTestPage: React.FC = () => {
     <Card title="🧪 Auto Test Simulation" style={{ margin: 24 }}>
       <Title level={5}>Run an automatic pollution anomaly test</Title>
       <Text type="secondary">
-        This will randomly generate air pollution data and simulate anomalies
-        for testing the system.
+        Simulate <strong>random air pollution data</strong> for a duration,
+        sending multiple requests per second with a given{" "}
+        <strong>anomaly probability (%)</strong>.
       </Text>
 
       <Row gutter={[16, 16]} style={{ marginTop: 16 }}>
         <Col span={8}>
           <InputNumber
             min={1}
-            max={300}
+            max={600}
             value={duration ?? undefined}
             onChange={(value) => setDuration(value)}
             addonBefore="Duration"
