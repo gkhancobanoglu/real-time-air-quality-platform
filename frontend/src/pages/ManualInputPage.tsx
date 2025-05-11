@@ -7,117 +7,142 @@ import {
   Col,
   Typography,
   Alert,
-  Select,
+  Form,
 } from "antd";
 import axios from "axios";
 
 const { Title } = Typography;
-const { Option } = Select;
 
 const ManualInputPage: React.FC = () => {
-  const [lat, setLat] = useState<number | null>(null);
-  const [lon, setLon] = useState<number | null>(null);
-  const [param, setParam] = useState<string>("");
-  const [value, setValue] = useState<number | null>(null);
+  const [form] = Form.useForm();
   const [result, setResult] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (values: any) => {
+    setLoading(true);
     try {
+      const params = {
+        lat: values.lat,
+        lon: values.lon,
+        co: values.co,
+        no: values.no,
+        no2: values.no2,
+        o3: values.o3,
+        so2: values.so2,
+        pm25: values.pm25,
+        pm10: values.pm10,
+        nh3: values.nh3,
+      };
+
       const response = await axios.post(
         `${process.env.REACT_APP_SCRIPT_RUNNER_API}/api/scripts/manual`,
         null,
-        {
-          params: {
-            lat,
-            lon,
-            param,
-            value,
-          },
-        }
+        { params }
       );
 
-      setResult(response.data);
+      setResult(`✅ Script triggered. Exit code/output:\n${response.data}`);
       setError(null);
     } catch (err) {
       console.error(err);
-      setError("Something went wrong while running the script.");
+      setError("❌ Failed to trigger the manual script.");
       setResult(null);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <Card title="🛠 Manual Data Injection" style={{ margin: 24 }}>
-      <Title level={5}>Enter Data Below</Title>
-      <Row gutter={[16, 16]}>
-        <Col span={6}>
-          <InputNumber
-            placeholder="Latitude"
-            value={lat ?? undefined}
-            onChange={setLat}
-            style={{ width: "100%" }}
-          />
-        </Col>
-        <Col span={6}>
-          <InputNumber
-            placeholder="Longitude"
-            value={lon ?? undefined}
-            onChange={setLon}
-            style={{ width: "100%" }}
-          />
-        </Col>
-        <Col span={6}>
-          <Select
-            placeholder="Select Pollutant"
-            value={param || undefined}
-            onChange={(value) => setParam(value)}
-            style={{ width: "100%" }}
-          >
-            <Option value="pm25">PM2.5</Option>
-            <Option value="pm10">PM10</Option>
-            <Option value="o3">O₃</Option>
-            <Option value="so2">SO₂</Option>
-            <Option value="no2">NO₂</Option>
-            <Option value="co">CO</Option>
-          </Select>
-        </Col>
-        <Col span={6}>
-          <InputNumber
-            placeholder="Value"
-            value={value ?? undefined}
-            onChange={setValue}
-            style={{ width: "100%" }}
-          />
-        </Col>
-      </Row>
-
-      <Button
-        type="primary"
-        onClick={handleSubmit}
-        disabled={!lat || !lon || !param || !value}
-        style={{ marginTop: 16 }}
+      <Title level={5}>
+        Manually enter pollutant data to simulate an event
+      </Title>
+      <Form
+        layout="vertical"
+        form={form}
+        onFinish={handleSubmit}
+        autoComplete="off"
       >
-        Run Script
-      </Button>
+        <Row gutter={16}>
+          <Col span={6}>
+            <Form.Item name="lat" label="Latitude" rules={[{ required: true }]}>
+              <InputNumber style={{ width: "100%" }} />
+            </Form.Item>
+          </Col>
+          <Col span={6}>
+            <Form.Item
+              name="lon"
+              label="Longitude"
+              rules={[{ required: true }]}
+            >
+              <InputNumber style={{ width: "100%" }} />
+            </Form.Item>
+          </Col>
+          <Col span={6}>
+            <Form.Item name="co" label="CO" rules={[{ required: true }]}>
+              <InputNumber style={{ width: "100%" }} />
+            </Form.Item>
+          </Col>
+          <Col span={6}>
+            <Form.Item name="no" label="NO" rules={[{ required: true }]}>
+              <InputNumber style={{ width: "100%" }} />
+            </Form.Item>
+          </Col>
+        </Row>
+
+        <Row gutter={16}>
+          <Col span={6}>
+            <Form.Item name="no2" label="NO₂" rules={[{ required: true }]}>
+              <InputNumber style={{ width: "100%" }} />
+            </Form.Item>
+          </Col>
+          <Col span={6}>
+            <Form.Item name="o3" label="O₃" rules={[{ required: true }]}>
+              <InputNumber style={{ width: "100%" }} />
+            </Form.Item>
+          </Col>
+          <Col span={6}>
+            <Form.Item name="so2" label="SO₂" rules={[{ required: true }]}>
+              <InputNumber style={{ width: "100%" }} />
+            </Form.Item>
+          </Col>
+          <Col span={6}>
+            <Form.Item name="pm25" label="PM2.5" rules={[{ required: true }]}>
+              <InputNumber style={{ width: "100%" }} />
+            </Form.Item>
+          </Col>
+        </Row>
+
+        <Row gutter={16}>
+          <Col span={6}>
+            <Form.Item name="pm10" label="PM10" rules={[{ required: true }]}>
+              <InputNumber style={{ width: "100%" }} />
+            </Form.Item>
+          </Col>
+          <Col span={6}>
+            <Form.Item name="nh3" label="NH₃" rules={[{ required: true }]}>
+              <InputNumber style={{ width: "100%" }} />
+            </Form.Item>
+          </Col>
+        </Row>
+
+        <Form.Item>
+          <Button type="primary" htmlType="submit" loading={loading}>
+            Send Data
+          </Button>
+        </Form.Item>
+      </Form>
 
       {result && (
         <Alert
-          message="Script Output"
+          message="Success"
           description={<pre>{result}</pre>}
           type="success"
           showIcon
-          style={{ marginTop: 16 }}
         />
       )}
-
       {error && (
-        <Alert
-          message="Error"
-          description={error}
-          type="error"
-          showIcon
-          style={{ marginTop: 16 }}
-        />
+        <Alert message="Error" description={error} type="error" showIcon />
       )}
     </Card>
   );
