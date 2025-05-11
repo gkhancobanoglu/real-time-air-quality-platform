@@ -120,25 +120,43 @@ http://localhost:3000
 - `GET /api/air?lat={lat}&lon={lon}` – OpenWeatherMap'ten veri alır, Kafka'ya gönderir.
 - `POST /api/air/data` – JSON body ile manuel veri alır, Kafka'ya gönderir ve AQI hesaplar.
 
+![air-data-service Swagger](docs/8081.jpg)
+
+---
+
 ### anomaly-detection-service
 
 - `GET /api/anomalies` – Tüm anomaly kayıtlarını döner.
 - `GET /api/anomalies/latest` – Son anomaly kaydını döner.
 - `GET /api/anomalies/{id}` – ID'ye özel anomaly verisi getirir.
 
+![anomaly-detection-service Swagger](/docs/8082.jpg)
+
+---
+
 ### data-storage-service
 
 - `GET /api/air-quality` – Tüm kayıtlı hava kalitesi verileri.
 - `GET /api/air-quality/pollution/region?minLat=x&maxLat=y&minLon=a&maxLon=b` – Bölgesel ortalamaları döner.
 
+![data-storage-service Swagger](docs/8083.jpg)
+
+---
+
 ### notification-service
 
 - `GET /api/notifications/stream` – SSE ile anomaly bildirimlerini yayınlar.
 
+![notification-service Swagger](docs/8084.jpg)
+
+---
+
 ### script-runner-service
 
-- `POST /api/scripts/manual?lat=&lon=&param=&value=` – manual-input.sh script'ini çalıştırır.
-- `POST /api/scripts/autotest?duration=&rate=&anomalyChance=` – auto-test.sh script'ini çalıştırır.
+- `POST /api/scripts/manual?lat=&lon=&param=&value=` – `manual-input.sh` script'ini çalıştırır.
+- `POST /api/scripts/autotest?duration=&rate=&anomalyChance=` – `auto-test.sh` script'ini çalıştırır.
+
+![script-runner-service Swagger](docs/8085.jpg)
 
 ---
 
