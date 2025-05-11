@@ -13,12 +13,30 @@ public class ScriptController {
 
     @PostMapping("/manual")
     public ResponseEntity<String> runManualInput(
-            @RequestParam double lat,
-            @RequestParam double lon,
-            @RequestParam String param,
-            @RequestParam double value) {
-        return runScript("cmd.exe", "/c", "C:\\Users\\Gokhan\\Desktop\\TASKLER\\kartaca\\real-time-air-quality-platform\\backend\\scripts\\manual-input.bat",
-                String.valueOf(lat), String.valueOf(lon), param, String.valueOf(value));
+            @RequestParam("lat") double lat,
+            @RequestParam("lon") double lon,
+            @RequestParam("co") double co,
+            @RequestParam("no") double no,
+            @RequestParam("no2") double no2,
+            @RequestParam("o3") double o3,
+            @RequestParam("so2") double so2,
+            @RequestParam("pm25") double pm25,
+            @RequestParam("pm10") double pm10,
+            @RequestParam("nh3") double nh3) {
+
+        return runScript(
+                "/bin/sh", "/scripts/manual-input.sh",
+                String.valueOf(lat),
+                String.valueOf(lon),
+                String.valueOf(co),
+                String.valueOf(no),
+                String.valueOf(no2),
+                String.valueOf(o3),
+                String.valueOf(so2),
+                String.valueOf(pm25),
+                String.valueOf(pm10),
+                String.valueOf(nh3)
+        );
     }
 
     @PostMapping("/autotest")

@@ -85,7 +85,8 @@ services:
 
   script-runner-service:
     build:
-      context: ./backend/script-runner-service
+      context: ./backend
+      dockerfile: script-runner-service/Dockerfile
     ports:
       - "8085:8085"
     depends_on:

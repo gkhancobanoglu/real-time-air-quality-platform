@@ -16,7 +16,7 @@ PM25="$8"
 PM10="$9"
 NH3="${10}"
 
-curl -X POST "http://localhost:8081/api/air/data" \
+curl -X POST "http://air-data-service:8081/api/air/data" \
   -H "Content-Type: application/json" \
   -d "$(cat <<EOF
 {

@@ -20,12 +20,12 @@ public class NotificationController {
 
     @GetMapping(path = "/api/notifications/stream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<String> streamNotifications() {
-        log.info("🎯 SSE bağlantısı kuruldu, anomaly-service'den veri alınacak");
+        log.info("SSE baglantisi kuruldu, anomaly-service'den veri alinacak");
 
         return Flux.interval(Duration.ofSeconds(2))
                 .flatMap(tick -> fetchLatestAnomaly())
                 .onErrorResume(e -> {
-                    log.error("❌ anomaly-service isteği başarısız: {}", e.getMessage());
+                    log.error("anomaly-service istegi basarisiz: {}", e.getMessage());
                     return Mono.empty();
                 });
     }
