@@ -4,3 +4,9 @@ server:
 spring:
   application:
     name: script-runner-service
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html

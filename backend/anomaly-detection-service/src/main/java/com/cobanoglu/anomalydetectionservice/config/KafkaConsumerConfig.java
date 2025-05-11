@@ -21,11 +21,11 @@ public class KafkaConsumerConfig {
     public ConsumerFactory<String, AirQualityResponse> consumerFactory() {
         Map<String, Object> config = new HashMap<>();
         config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "kafka:9092");
-        config.put(ConsumerConfig.GROUP_ID_CONFIG, "data-storage-group");
+        config.put(ConsumerConfig.GROUP_ID_CONFIG, "anomaly-detector");
         config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ErrorHandlingDeserializer.class);
         config.put(ErrorHandlingDeserializer.VALUE_DESERIALIZER_CLASS, JsonDeserializer.class);
-        config.put(JsonDeserializer.VALUE_DEFAULT_TYPE, "com.cobanoglu.datastorageservice.model.AirQualityResponse");
+        config.put(JsonDeserializer.VALUE_DEFAULT_TYPE, "com.cobanoglu.anomalydetectionservice.model.AirQualityResponse");
         config.put(JsonDeserializer.TRUSTED_PACKAGES, "*");
 
         return new DefaultKafkaConsumerFactory<>(config);

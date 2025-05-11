@@ -5,6 +5,12 @@ import com.cobanoglu.airdataservice.model.AirQualityResponse;
 import com.cobanoglu.airdataservice.model.PollutantData;
 import com.cobanoglu.airdataservice.service.AirQualityService;
 import com.cobanoglu.airdataservice.service.KafkaProducerService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,22 +23,48 @@ import java.util.Arrays;
 @RequestMapping("/api/air")
 @RequiredArgsConstructor
 @Validated
+@Tag(name = "Air Quality API", description = "Provides real-time air quality data using OpenWeatherMap and publishes it to Kafka.")
 public class AirQualityController {
 
     private final AirQualityService airQualityService;
     private final KafkaProducerService kafkaProducerService;
 
+    @Operation(
+            summary = "Get air quality data for specific coordinates",
+            description = "Fetches air quality data from OpenWeatherMap based on provided latitude and longitude and publishes it to Kafka.",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Successful retrieval",
+                            content = @Content(schema = @Schema(implementation = AirQualityResponse.class))
+                    )
+            }
+    )
     @GetMapping
     public ResponseEntity<AirQualityResponse> getAirQuality(
-            @RequestParam("lat") @NotNull Double lat,
-            @RequestParam("lon") @NotNull Double lon) {
+            @Parameter(description = "Latitude", required = true) @RequestParam("lat") @NotNull Double lat,
+            @Parameter(description = "Longitude", required = true) @RequestParam("lon") @NotNull Double lon) {
 
         AirQualityResponse response = airQualityService.getAirQuality(lat, lon);
         kafkaProducerService.sendAirQualityData(response);
-
         return ResponseEntity.ok(response);
     }
 
+    @Operation(
+            summary = "Submit air quality data manually",
+            description = "Accepts manually provided air quality data and sends it to Kafka.",
+            requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
+                    required = true,
+                    description = "Air quality data payload",
+                    content = @Content(schema = @Schema(implementation = AirDataRequest.class))
+            ),
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Data successfully received and published to Kafka"
+                    )
+            }
+    )
     @PostMapping("/data")
     public ResponseEntity<Void> submitAirData(@RequestBody AirDataRequest request) {
         AirQualityResponse.AirData data = new AirQualityResponse.AirData();
@@ -62,5 +94,4 @@ public class AirQualityController {
         kafkaProducerService.sendAirQualityData(response);
         return ResponseEntity.ok().build();
     }
-
 }
