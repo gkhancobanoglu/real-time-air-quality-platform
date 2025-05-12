@@ -41,7 +41,8 @@ services:
 
   air-data-service:
     build:
-      context: ./backend/air-data-service
+      context: .
+      dockerfile: backend/air-data-service/Dockerfile
     ports:
       - "8081:8081"
     depends_on:
@@ -53,7 +54,8 @@ services:
 
   anomaly-detection-service:
     build:
-      context: ./backend/anomaly-detection-service
+      context: .
+      dockerfile: backend/anomaly-detection-service/Dockerfile
     ports:
       - "8082:8082"
     depends_on:
@@ -65,7 +67,8 @@ services:
 
   data-storage-service:
     build:
-      context: ./backend/data-storage-service
+      context: .
+      dockerfile: backend/data-storage-service/Dockerfile
     ports:
       - "8083:8083"
     depends_on:
@@ -75,7 +78,8 @@ services:
 
   notification-service:
     build:
-      context: ./backend/notification-service
+      context: .
+      dockerfile: backend/notification-service/Dockerfile
     ports:
       - "8084:8084"
     depends_on:
@@ -85,8 +89,8 @@ services:
 
   script-runner-service:
     build:
-      context: ./backend
-      dockerfile: script-runner-service/Dockerfile
+      context: .
+      dockerfile: backend/script-runner-service/Dockerfile
     ports:
       - "8085:8085"
     depends_on:
