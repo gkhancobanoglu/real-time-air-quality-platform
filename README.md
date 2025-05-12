@@ -12,6 +12,7 @@ Bu proje, hava kalitesi verilerini gerçek zamanlı olarak izlemek, analiz etmek
 - [🚀 Kurulum Adımları](#-kurulum-adımları)
 - [🧑‍💻 Kullanım Rehberi](#-kullanım-rehberi)
 - [🛠 API Dokümantasyonu](#-api-dokümantasyonu)
+- [🔗 Swagger UI Endpointleri](#-swagger-ui-endpointleri)
 - [📜 Script Kullanımı](#-script-kullanımı)
 - [🩺 Troubleshooting](#-troubleshooting)
 
@@ -157,6 +158,18 @@ http://localhost:3000
 - `POST /api/scripts/autotest?duration=&rate=&anomalyChance=` – `auto-test.sh` script'ini çalıştırır.
 
 ![script-runner-service Swagger](docs/8085.jpg)
+
+---
+
+## 🔗 Swagger UI Endpointleri
+
+| Servis                    | Swagger UI Linki                                                                           |
+| ------------------------- | ------------------------------------------------------------------------------------------ |
+| **air-data-service**      | [http://localhost:8081/swagger-ui/index.html](http://localhost:8081/swagger-ui/index.html) |
+| **anomaly-detection**     | [http://localhost:8082/swagger-ui/index.html](http://localhost:8082/swagger-ui/index.html) |
+| **data-storage-service**  | [http://localhost:8083/swagger-ui/index.html](http://localhost:8083/swagger-ui/index.html) |
+| **notification-service**  | [http://localhost:8084/swagger-ui/index.html](http://localhost:8084/swagger-ui/index.html) |
+| **script-runner-service** | [http://localhost:8085/swagger-ui/index.html](http://localhost:8085/swagger-ui/index.html) |
 
 ---
 
