@@ -78,6 +78,16 @@ cd real-time-air-quality-platform
 chmod +x backend/scripts/*.sh
 ```
 
+> Eğer `.sh` dosyalarını çalıştırırken `command not found` veya  
+> `syntax error near unexpected token` gibi hatalar alırsanız, satır sonlarını düzeltmek için şu komutları çalıştırın:
+
+```bash
+dos2unix backend/scripts/manual-input.sh
+dos2unix backend/scripts/auto-test.sh
+```
+
+---
+
 ### 2. Docker Compose ile Tüm Servisleri Başlatın
 
 ```bash
@@ -86,9 +96,13 @@ docker-compose up --build
 
 > İlk çalıştırma 2-5 dakika sürebilir.
 
+---
+
 ### 3. Frontend'e Erişim
 
 http://localhost:3000
+
+---
 
 ### 4. Servislerin Portları
 
@@ -100,8 +114,6 @@ http://localhost:3000
 | data-storage-service  | http://localhost:8083 |
 | notification-service  | http://localhost:8084 |
 | script-runner-service | http://localhost:8085 |
-
----
 
 ## 🧑‍💻 Kullanım Rehberi
 
@@ -195,12 +207,15 @@ Verilen süre boyunca belirli hızda rastgele veri üretip gönderir.
 
 ## 🩺 Troubleshooting
 
-| Sorun                      | Çözüm                                                    |
-| -------------------------- | -------------------------------------------------------- |
-| PostgreSQL bağlantı hatası | `init.sql` doğru mount edildi mi? Port 5432 açık mı?     |
-| Kafka bağlantı hatası      | `localhost` yerine `kafka` host adı kullanıldı mı?       |
-| Veriler görünmüyor         | `docker-compose logs -f` ile ilgili servisi kontrol edin |
-| SSE çalışmıyor             | Tarayıcı CORS/SSE loglarını kontrol edin                 |
+| Sorun                                          | Çözüm                                                                          |
+| ---------------------------------------------- | ------------------------------------------------------------------------------ |
+| PostgreSQL bağlantı hatası                     | `init.sql` doğru mount edildi mi? Port 5432 açık mı?                           |
+| Kafka bağlantı hatası                          | `localhost` yerine `kafka` host adı kullanıldı mı?                             |
+| Veriler görünmüyor                             | `docker-compose logs -f` ile ilgili servisi kontrol edin.                      |
+| SSE çalışmıyor                                 | Tarayıcı CORS/SSE loglarını kontrol edin.                                      |
+| `.sh` script hatası (command not found, $'\r') | `dos2unix backend/scripts/manual-input.sh` komutu ile satır sonlarını düzeltin |
+| Scriptler çalışmıyor                           | `chmod +x backend/scripts/*.sh` ile çalıştırma izni verildi mi?                |
+| Yeni veriler görünmüyor                        | Sayfayı yenileyin (refresh) veya scripti tekrar çalıştırın.                    |
 
 ---
 

@@ -65,7 +65,6 @@ const MapView: React.FC = () => {
   const [markerPoints, setMarkerPoints] = useState<AnomalyPoint[]>([]);
 
   useEffect(() => {
-    // 1️⃣ Geçmiş anomaly verilerini getir
     fetch(`${process.env.REACT_APP_ANOMALY_API}/api/anomalies`)
       .then((res) => res.json())
       .then((data: AnomalyPoint[]) => {
@@ -75,7 +74,6 @@ const MapView: React.FC = () => {
         setMarkerPoints(data);
       });
 
-    // 2️⃣ Yeni verileri dinle (SSE)
     const eventSource = new EventSource(
       `${process.env.REACT_APP_NOTIFICATION_API}/api/notifications/stream`
     );
@@ -109,6 +107,12 @@ const MapView: React.FC = () => {
         center={[41.015, 28.979]}
         zoom={11}
         style={{ height: "500px", width: "100%" }}
+        worldCopyJump={false}
+        maxBounds={[
+          [-85, -180],
+          [85, 180],
+        ]}
+        maxBoundsViscosity={1.0}
       >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
